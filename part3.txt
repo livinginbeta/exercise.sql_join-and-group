@@ -1,0 +1,5 @@
+-- PART 3
+SELECT status AS "Order Status", COUNT(status) AS "# Orders"
+FROM orders 
+GROUP BY status
+ORDER BY status;

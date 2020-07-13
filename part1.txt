@@ -1,0 +1,5 @@
+-- PART 1
+SELECT c.customerName AS "Customer Name", CONCAT(e.lastName, ', ', e.firstName) AS "Sales Rep"
+FROM customers c JOIN employees e 
+ON c.salesRepEmployeeNumber=e.employeeNumber
+ORDER BY c.customerName;

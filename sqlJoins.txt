@@ -1,0 +1,67 @@
+-- PART 1
+SELECT c.customerName AS "Customer Name", CONCAT(e.lastName, ', ', e.firstName) AS "Sales Rep"
+FROM customers c JOIN employees e 
+ON c.salesRepEmployeeNumber=e.employeeNumber
+ORDER BY c.customerName;
+
+-- PART 2
+SELECT p.productName AS "Product Name", o.quantityOrdered AS "Total # Ordered", o.quantityOrdered * o.priceEach AS "Total Sale"
+FROM products p JOIN orderdetails o
+ON p.productCode = o.productCode
+ORDER BY o.quantityOrdered * o.priceEach DESC;
+
+-- PART 3
+SELECT status AS "Order Status", COUNT(status) AS "# Orders"
+FROM orders 
+GROUP BY status
+ORDER BY status;
+
+
+--PART 4
+SELECT p.productLine AS "Product Line", SUM(o.quantityOrdered) AS "# Sold"
+FROM products p JOIN orderDetails o
+ON p.productCode=o.productCode
+GROUP BY p.productLine
+ORDER BY o.quantityOrdered DESC;
+
+-- PART 5
+SELECT CONCAT (e.lastName, ", ", e.firstName) AS 'Sales Rep', COUNT(o.orderNumber) AS '# Orders', IFNULL((od.quantityOrdered*od.priceEach), '0.00') AS 'Total Sales'
+FROM employees e LEFT JOIN customers c
+ON e.employeeNumber=c.salesRepEmployeeNumber
+LEFT JOIN
+orders AS o
+ON o.customerNumber=c.customerNumber
+LEFT JOIN 
+orderdetails AS od
+ON o.orderNumber=od.orderNumber
+GROUP BY CONCAT (e.lastName, ", ", e.firstName)
+ORDER BY (od.quantityOrdered*od.priceEach) DESC;
+
+
+-- PART 6
+SELECT MONTHNAME(paymentDate) AS 'Month', EXTRACT(YEAR FROM paymentDate) AS 'Year', amount AS 'Payments Received'
+FROM payments
+GROUP BY MONTHNAME(paymentDate), Year
+ORDER BY paymentDate ASC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

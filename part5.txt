@@ -1,0 +1,12 @@
+-- PART 5
+SELECT CONCAT (e.lastName, ", ", e.firstName) AS 'Sales Rep', COUNT(o.orderNumber) AS '# Orders', IFNULL((od.quantityOrdered*od.priceEach), '0.00') AS 'Total Sales'
+FROM employees e LEFT JOIN customers c
+ON e.employeeNumber=c.salesRepEmployeeNumber
+LEFT JOIN
+orders AS o
+ON o.customerNumber=c.customerNumber
+LEFT JOIN 
+orderdetails AS od
+ON o.orderNumber=od.orderNumber
+GROUP BY CONCAT (e.lastName, ", ", e.firstName)
+ORDER BY (od.quantityOrdered*od.priceEach) DESC;

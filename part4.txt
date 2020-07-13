@@ -1,0 +1,6 @@
+--PART 4
+SELECT p.productLine AS "Product Line", SUM(o.quantityOrdered) AS "# Sold"
+FROM products p JOIN orderDetails o
+ON p.productCode=o.productCode
+GROUP BY p.productLine
+ORDER BY o.quantityOrdered DESC;

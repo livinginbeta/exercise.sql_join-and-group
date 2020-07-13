@@ -1,0 +1,5 @@
+-- PART 6
+SELECT MONTHNAME(paymentDate) AS 'Month', REPLACE(EXTRACT(YEAR FROM paymentDate), ',', '') AS 'Year', amount AS 'Payments Received'
+FROM payments
+GROUP BY MONTHNAME(paymentDate), Year
+ORDER BY paymentDate ASC;
